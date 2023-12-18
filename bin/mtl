@@ -5,14 +5,20 @@
 # mtl directory
 MTL_DIR="$HOME/.mtl"
 
-# mtl command directory
-MTL_CMD_DIR="$MTL_DIR/cmd"
+# mtl lib directory
+MTL_LIB_DIR="$MTL_DIR/lib"
 
-# mtl config directory
-MTL_CONF_DIR="$MTL_DIR/conf"
+# mtl bin directory
+MTL_BIN_DIR="$MTL_DIR/bin"
+
+# mtl command directory
+MTL_CMD_DIR="$MTL_LIB_DIR/cmd"
+
+# mtl utils directory
+MTL_UTILS_DIR="$MTL_LIB_DIR/utils"
 
 # mtl config file
-MTL_CONF_FILE="$MTL_CONF_DIR/mtl.conf"
+MTL_CONF_FILE="$HOME/.mtlrc"
 
 # mtl version
 MTL_VERSION="0.0.1"
@@ -21,15 +27,16 @@ MTL_VERSION="0.0.1"
 # --------- Config ---------
 
 # config loader
-source ./lib/config.sh
+source $MTL_UTILS_DIR/config.sh
 
 # load config
-load_config
+load_config $MTL_CONF_FILE
+
 
 # --------- Commands ---------
 
 # commands loader
-source ./lib/commands.sh
+source $MTL_UTILS_DIR/cmd.sh
 
 # load commands
 load_commands
@@ -38,7 +45,10 @@ load_commands
 # --------- Utils ---------
 
 # utils loader
-source ./lib/utils.sh
+source $MTL_UTILS_DIR/utils.sh
+
+# load utils
+load_utils
 
 # --------- Main ---------
 
