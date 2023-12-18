@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# --------- Variables & Settings ---------
+
+# mtl directory
+MTL_DIR="$HOME/.mtl"
+
+# mtl command directory
+MTL_CMD_DIR="$MTL_DIR/cmd"
+
+# mtl config directory
+MTL_CONF_DIR="$MTL_DIR/conf"
+
+# mtl config file
+MTL_CONF_FILE="$MTL_CONF_DIR/mtl.conf"
+
+# mtl version
+MTL_VERSION="0.0.1"
+
+
+# --------- Config ---------
+
+# config loader
+source ./lib/config.sh
+
+# load config
+load_config
+
+# --------- Commands ---------
+
+# commands loader
+source ./lib/commands.sh
+
+# load commands
+load_commands
+
+
+# --------- Utils ---------
+
+# utils loader
+source ./lib/utils.sh
+
+# --------- Main ---------
+
+main() {
+  # if $1 arg has - or --
+  if [[ "$1" == "-"* || "$1" == "--"* ]]; then
+    # -v or --version
+    if [[ "$1" == "-v" || "$1" == "--version" ]]; then
+      echo "mtl version $MTL_VERSION"
+      exit 0
+    fi
+    # -h or --help
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+      # shift 1 arg
+      shift 1
+      # run help
+      help "$@"
+      exit 0
+    fi
+  fi
+  # run command
+  run_command "$@"
+  # exit
+  exit 0
+}
+
+# --------- Run ---------
+
+# run main
+main "$@"
