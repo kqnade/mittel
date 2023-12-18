@@ -1,19 +1,16 @@
+load_commands() {
+  # commands dir
+  commands_dir="$MTL_CMD_DIR"
+  # for each file in commands dir
+  for file in $commands_dir/*; do
+    # source file
+    source $file
+  done
+}
+
 run_command() {
-  local cmd=$1
-  local args=$2
-  local cmd_path=$MTL_CMD_DIR/$cmd.sh
-  if [[ -f $cmd_path ]]; then
-    source $cmd_path
-    $cmd $args
-  else
-    echo "Command not found: $cmd"
-    exit 1
-  fi
-  return $?
-  # shellcheck disable=SC2181
-  if [[ $? -ne 0 ]]; then
-    echo "Command failed: $cmd"
-    exit 1
-  fi
-  return 0
+  # run command
+  command=$1
+  shift 1
+  $command "$@"
 }

@@ -11,6 +11,9 @@ MTL_LIB_DIR="$MTL_DIR/lib"
 # mtl bin directory
 MTL_BIN_DIR="$MTL_DIR/bin"
 
+# mtl pakcages directory
+MTL_PACKAGES_DIR="$MTL_DIR/pkgs"
+
 # mtl command directory
 MTL_CMD_DIR="$MTL_LIB_DIR/cmd"
 
@@ -27,11 +30,10 @@ MTL_VERSION="0.0.1"
 # --------- Config ---------
 
 # config loader
-source $MTL_UTILS_DIR/config.sh
+source $MTL_UTILS_DIR/conf.sh
 
 # load config
 load_config $MTL_CONF_FILE
-
 
 # --------- Commands ---------
 
