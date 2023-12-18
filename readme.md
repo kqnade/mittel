@@ -34,10 +34,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 If you want to contribute to Mittel, please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for details
 
-### Other Contributers
-
-None yet
-
 ## Versioning
 
 Watch the [tags on this repository](https://github.com/kqnade/Mittel/tags).
