@@ -1,6 +1,6 @@
 test(){
   #help
-  if [[ "$1" == help]]
+  if [[ "$1" == help]]; then
     echo "Mittel Command: test"
     echo "Usage: mtl test"
     echo ""
@@ -20,4 +20,13 @@ test(){
     echo "Version: $MTL_VERSION"
     echo ""
   fi
+  while [[ "$1" != "" ]]; do
+    case $1 
+      in 
+      *)
+        echo "Args tester: $1"
+        shift 1
+        ;;
+    esac
+  done
 }

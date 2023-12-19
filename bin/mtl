@@ -26,22 +26,20 @@ MTL_CONF_FILE="$HOME/.mtlrc"
 # mtl version
 MTL_VERSION="0.0.1"
 
-
-# --------- Config ---------
-
 # --------- Set Up ---------
-# exist mtl directory git clone
+# File　Check
 if [[ ! -d "$MTL_DIR" ]]; then
   # git clone
-  git clone https://github.com/kqnade/mtl.git $MTL_DIR
+  git clone https://github.com/kqnade/mittel.git $HOME/.mtl
   echo "Mittel Clone Success!"
 fi
 
-# Directory Check
-if [[ ! -d "$MTL_PACKAGES_DIR" ]]; then
-  echo "Mittel Error: $MTL_PACKAGES_DIR not found"
-  mkdir $MTL_PACKAGES_DIR
-  echo "Mittel Create: $MTL_PACKAGES_DIR"
+# --------- Config ---------
+
+# exist config file
+if [[ ! -f "$MTL_CONF_FILE" ]]; then
+  # create config file
+  touch $MTL_CONF_FILE
 fi
 
 # config loader
