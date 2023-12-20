@@ -47,6 +47,12 @@ if [[ -d $HOME/.mtl ]]; then
   exit 1
 fi
 git clone -b $MTL_BRANCH https://github.com/kqnade/mittel.git $HOME/.mtl
+echo "Mittel downloaded!"
+echo ""
+echo "Installing..."
+chmod +x $HOME/.mtl/bin/mtl
+echo "Mittel installed!"
+
 
 
 # --------- Config ---------
