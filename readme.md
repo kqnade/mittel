@@ -1,6 +1,10 @@
+# (WIP) THIS PROJECT IS CURRENTLY WORKING!
+
 # Mittel
 
 Mittel is package manager for non-root env
+
+
 
 ## How to Use
 
@@ -19,7 +23,7 @@ Working!
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Structure of Directory
 
