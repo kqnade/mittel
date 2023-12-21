@@ -1,4 +1,0 @@
-test(){
-  #help
-  echo "test"
-}

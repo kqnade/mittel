@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# --------- Dev ---------
- 
- MTL_DEV=true
-
-# --------- Config ---------
-source 
-
-
 # --------- Main ---------
 
 main() {
