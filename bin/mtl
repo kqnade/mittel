@@ -1,1 +1,5 @@
 #!/usr/bin/env bash
+
+# --------- Config ---------
+
+if [ -z "$MTL_DIR" ]; then

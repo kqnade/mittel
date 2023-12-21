@@ -82,12 +82,20 @@ fi
 chmod +x $MTL_DIR/bin/mtl
 
 # dup path check
-if grep -q "$pathconf" "$shellrc"; then
+if grep -q "export PATH=$pathconf" "$shellrc"; then
   echo "Mittel is already installed."
 else
   echo "export PATH=$pathconf" >> $shellrc
-  echi "export MTL_DIR=$MTL_DIR" >> $shellrc
-  echo "Mittel is installed."
+fi
+if grep -q "export MTL_DIR=$MTL_DIR" "$shellrc"; then
+  echo "Mittel Directories are already set."
+else
+  echo "export MTL_DIR=$MTL_DIR" >> $shellrc
+fi
+if grep -q "export MTL_CONF=$MTL_CONF" "$shellrc"; then
+  echo "Mittel Config is already set."
+else
+  echo "export MTL_CONF=$MTL_CONF" >> $shellrc
 fi
 
 # --------- Finish ---------
