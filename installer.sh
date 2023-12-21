@@ -78,30 +78,39 @@ else
     shellrc="$HOME/.bashrc"
   fi
 fi
+
+chmod +x $MTL_DIR/bin/mtl
+
 # dup path check
-if grep -q "$pathconf" "$HOME/$shellrc"; then
+if grep -q "$pathconf" "$shellrc"; then
   echo "Mittel is already installed."
 else
-  echo "$pathconf" >> "$HOME/$shellrc"
+  echo "export PATH=$pathconf" >> $shellrc
+  echo "Mittel is installed."
 fi
 
 # --------- Finish ---------
 
-echo "------------------------------------"
-echo "     Mittel Install Complete        "
-echo "------------------------------------"
-echo " Mittel is installed at $MTL_DIR"
-echo " Mittel's config file is at $MTL_CONF"
-echo "------------------------------------"
-echo " To run Mittel, run 'mtl'"
-echo "------------------------------------"
-echo " To uninstall Mittel, run 'mtl uninstall'"
-echo "-------------------------------------"
-echo " Thank you for installing Mittel!"
-echo "-------------------------------------"
-echo " Please report any issues at https://github.com/kqnade/mittel/issues"
-echo "-------------------------------------"
-echo " Mittel is licensed under the MIT License."
-echo "-------------------------------------"
-echo " Made with ❤️ by k47de"
-echo "-------------------------------------"
+echo "-----------------------------------------"
+echo "        Mittel Install Complete          "
+echo "-----------------------------------------"
+echo "  Mittel is installed at $MTL_DIR        "
+echo "  Mittel's config file is at $MTL_CONF   "
+echo "-----------------------------------------"
+echo "      Mittel is now ready to use         "
+echo " Before using Mittel, run 'exec $SHELL'  "
+echo "-----------------------------------------"
+echo "For more info, visit: https://mtl.k4na.de"
+echo "-----------------------------------------"
+echo ""
+echo ""
+echo "-----------------------------------------"
+echo "  Developed by k47de with <3 and coffee  "
+echo "-----------------------------------------"
+echo ""
+echo ""
+echo "-----------------------------------------"
+echo "  If you like Mittel, consider starring  "
+echo "  the project on GitHub. Thank you!      "
+echo "-----------------------------------------"
+echo ""
