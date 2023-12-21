@@ -3,3 +3,68 @@
 # --------- Config ---------
 
 if [ -z "$MTL_DIR" ]; then
+  echo "MTL_DIR is not set. Please set it in your .bashrc or .zshrc."
+  exit 1
+fi
+
+if [ -z "$MTL_CONF" ]; then
+  echo "MTL_CONF is not set. Please set it in your .bashrc or .zshrc."
+  exit 1
+fi
+
+# --------- Utils Load ---------
+
+. $MTL_DIR/utils.sh
+
+# --------- Config Load ---------
+
+config_load $MTL_CONF
+if [[ MTL_DEV == "true" ]]; then
+  echo "Mittel is in development mode."
+  echo "MTL_DIR: $MTL_DIR"
+  echo "MTL_CONF: $MTL_CONF"
+  echo "MTL_DEV: $MTL_DEV"
+fi
+
+# --------- Health Check ---------
+
+health_check
+
+# --------- Commands ---------
+
+command_loader
+
+# --------- Main ---------
+
+echo "Welcome to Mittel."
+echo "Type '$0 help' for a list of commands."
+
+# if has no args, show help
+if [[ $# -eq 0 ]]; then
+  help
+  exit 0
+fi
+
+# if has args, but - is the first arg, show help or version
+if [[ $1 == "-"* ]]; then
+  if [[ $1 == "-v" || $1 == "--version" ]]; then
+    version
+    exit 0
+  elif [[ $1 == "-h" || $1 == "--help" ]]; then
+    help
+    exit 0
+  else
+    echo "Invalid option: $1"
+    echo "Type '$0 help' for a list of commands."
+    exit 1
+  fi
+fi
+
+# if has args, but - is not the first arg, run command
+if [[ $1 != "-"* ]]; then
+  command=$1
+  shift 1
+  command_run $command $@
+  exit 0
+fi
+
