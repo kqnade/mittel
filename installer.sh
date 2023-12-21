@@ -72,6 +72,8 @@ if [! grep -q "$pathconf" "$HOME/$shellrc" ]; then
   echo "$pathconf" >> "$HOME/$shellrc"
 fi
 
+# --------- Finish ---------
+
 echo "------------------------------------"
 echo "     Mittel Install Complete        "
 echo "------------------------------------"
