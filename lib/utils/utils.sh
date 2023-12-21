@@ -1,8 +1,4 @@
-load_pkgupdate() {
-  # version checker
-  source $MTL_UTILS_DIR/version.sh
-  # update checker
-  source $MTL_UTILS_DIR/update.sh
-  # update
-  update
+load_utils() {
+  # load utils files
+  source ./lib/utils/conf.sh
 }
