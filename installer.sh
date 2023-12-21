@@ -86,6 +86,7 @@ if grep -q "$pathconf" "$shellrc"; then
   echo "Mittel is already installed."
 else
   echo "export PATH=$pathconf" >> $shellrc
+  echi "export MTL_DIR=$MTL_DIR" >> $shellrc
   echo "Mittel is installed."
 fi
 
