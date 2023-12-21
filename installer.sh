@@ -12,7 +12,7 @@ if [ "$MTL_DEV" == "true" ]; then
   read -p "Where do you want to install Mittel's config file (default: $HOME/.mtlrc)? " MTL_CONF
   read -p "Select branch (default: dev): " MTL_BRANCH
   if [ -z "$MTL_DIR" ]; then
-    MTL_DIR="$HOME/.mittel"
+    MTL_DIR="$HOME/.mtldev"
   fi
   if [ -z "$MTL_CONF" ]; then
     MTL_CONF="$HOME/.mtlrc"
@@ -27,7 +27,7 @@ else
 fi
 
 echo "------------------------------------"
-echo "     Mittel Install Config          "
+echo "      Mittel Install Config         "
 echo "------------------------------------"
 echo " MTL_DIR: $MTL_DIR"
 echo " MTL_CONF: $MTL_CONF"
@@ -44,31 +44,44 @@ fi
 # --------- Install ---------
 echo "Installing Mittel..."
 echo "Cloning Mittel..."
+if [ -d "$MTL_DIR" ]; then
+  echo "Mittel is already installed."
+  cd $MTL_DIR
+  git pull origin $MTL_BRANCH
+  cd -
+  exit 0
+fi
 git clone -b $MTL_BRANCH https://github.com/kqnade/mittel.git $MTL_DIR
 echo "Configuring Mittel..."
+if [ -f "$MTL_CONF" ]; then
+  rm $MTL_CONF
+fi
 touch $MTL_CONF
-echo "export MTL_DIR=$MTL_DIR" >> $MTL_CONF
-echo "export MTL_CONF=$MTL_CONF" >> $MTL_CONF
-echo "export MTL_DEV=$MTL_DEV" >> $MTL_CONF
-echo "export MTL_BRANCH=$MTL_BRANCH" >> $MTL_CONF
+echo "MTL_DIR=$MTL_DIR" >> $MTL_CONF
+echo "MTL_BRANCH=$MTL_BRANCH" >> $MTL_CONF
+echo "MTL_DEV=$MTL_DEV" >> $MTL_CONF
+
 
 echo "Installing Mittel..."
 shellname=$(basename $SHELL)
 pathconf="\$PATH:$MTL_DIR/bin"
 if [ "$shellname" == "zsh" ]; then
-  shellrc=".zshrc"
+  shellrc="$HOME/.zshrc"
 elif [ "$shellname" == "bash" ]; then
-  shellrc=".bashrc"
+  shellrc="$HOME/.bashrc"
 elif [ "$shellname" == "fish" ]; then
-  shellrc=".config/fish/config.fish"
+  shellrc="$HOME/.config/fish/config.fish"
 else
   echo "We can't detect your shell."
   read -p "Please enter your shell's config file name (default: .bashrc): " shellrc
   if [ -z "$shellrc" ]; then
-    shellrc=".bashrc"
+    shellrc="$HOME/.bashrc"
   fi
 fi
-if [! grep -q "$pathconf" "$HOME/$shellrc" ]; then
+# dup path check
+if grep -q "$pathconf" "$HOME/$shellrc"; then
+  echo "Mittel is already installed."
+else
   echo "$pathconf" >> "$HOME/$shellrc"
 fi
 
@@ -92,4 +105,3 @@ echo " Mittel is licensed under the MIT License."
 echo "-------------------------------------"
 echo " Made with ❤️ by k47de"
 echo "-------------------------------------"
-
