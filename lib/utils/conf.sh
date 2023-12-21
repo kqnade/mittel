@@ -20,7 +20,18 @@ load_configfile() {
   done < $config_file
 }
 
+reset_config() {
+  # reset config
+  MTL_DIR=""
+  MTL_CONFIG_FILE=""
+  MTL_LIB_DIR=""
+  MTL_CMD_DIR=""
+  MTL_UTILS_DIR=""
+  MTL_DEV=""
+}
+
 load_config() {
+  reset_config
   # config file
   config_file=$1
   # if config file exists

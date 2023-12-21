@@ -9,16 +9,19 @@ read -p ""
 echo ""
 echo "Installing..."
 
+
+
 # --------- Version Selection ---------
 # select version
 echo "Select a version to install:"
 echo "  1) Stable (main branch)"
 echo "  2) Beta (beta branch)"
 echo "  3) Dev (not recommended / dev branch)"
+echo "  4) Dev Mode (not recommended)"
 echo ""
 read -p "Version: " -n 1 -r
 echo ""
-if [[ $REPLY =~ ^[1-3]$ ]]; then
+if [[ $REPLY =~ ^[1-4]$ ]]; then
   if [[ $REPLY == 1 ]]; then
     MTL_BRANCH="main"
   fi
@@ -27,6 +30,11 @@ if [[ $REPLY =~ ^[1-3]$ ]]; then
   fi
   if [[ $REPLY == 3 ]]; then
     MTL_BRANCH="dev"
+  fi
+  if [[ $REPLY == 4 ]]; then
+    MTL_BRANCH="dev"
+    MTL_DEV=true
+    read -p "Which directory do you want to use for development? (default: $HOME/.mtl) " -a MTL_DIR
   fi
 else
   echo "Error: invalid version"
