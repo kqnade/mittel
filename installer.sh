@@ -118,5 +118,6 @@ echo "  If you like Mittel, consider starring  "
 echo "  the project on GitHub. Thank you!      "
 echo "-----------------------------------------"
 echo ""
-
+echo ""
+echo " Restaetting shell..."
 exec $SHELL
